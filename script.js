@@ -1,4 +1,3 @@
-
 const chatToggleBtn = document.getElementById('chat-toggle');
 const chatBox = document.getElementById('chat-box');
 const chatMessages = document.getElementById('chat-messages');
@@ -6,15 +5,11 @@ const chatForm = document.getElementById('chat-form');
 const chatInput = document.getElementById('chat-input');
 
 chatToggleBtn.addEventListener('click', () => {
-  if (chatBox.style.display === 'none' || chatBox.style.display === '') {
-    chatBox.style.display = 'flex';
-    chatInput.focus();
-  } else {
-    chatBox.style.display = 'none';
-  }
+  chatBox.style.display = chatBox.style.display === 'none' ? 'flex' : 'none';
+  chatInput.focus();
 });
 
-const OPENAI_API_KEY = 'YOUR_OPENAI_API_KEY_HERE'; // ضع مفتاحك هنا
+const OPENAI_API_KEY = 'ZObbmmTMeAaNHZOBtXC5zPG1DnIOEPLRsIdwrgL1SpoggK_NvvJnWpQfmUOdH7ArxEdJTFCGxJT3BlbkFJo2bnHOgdRQZQGwxtF5JUsfpzlhBEAMoXtkM8Bedfy_oY1x2';
 
 async function sendMessageToOpenAI(message) {
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -51,7 +46,7 @@ chatForm.addEventListener('submit', async (e) => {
     const botReply = await sendMessageToOpenAI(userMessage);
     addMessage('bot', botReply);
   } catch (err) {
-    addMessage('bot', 'عذراً، حدث خطأ في الاتصال بالمساعد.');
+    addMessage('bot', 'عذرًا، تعذر الاتصال بالمساعد الذكي.');
   } finally {
     chatInput.disabled = false;
     chatInput.focus();
